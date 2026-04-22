@@ -44,7 +44,8 @@ const courierQuestions: Question[] = [
     section: S_TEAM,
     sectionContext: C_TEAM,
     question: 'What types of samples do you collect — DNA, tissue, blood, or something else?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['DNA / genetic samples', 'Tissue / biopsy', 'Blood', 'Urine', 'Saliva / buccal swab', 'FFPE / paraffin blocks', 'Cytology slides', 'Other biological specimens'],
     required: true,
   },
   {
@@ -147,7 +148,8 @@ const courierQuestions: Question[] = [
     section: S_COMMS,
     sectionContext: C_COMMS,
     question: 'How do you currently communicate with customer care during a collection — WhatsApp, phone, Teams, or something else?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp', 'Phone call', 'Email', 'Microsoft Teams', 'Telegram', 'In-person when back at office', 'No formal communication channel'],
     required: true,
   },
   {
@@ -155,7 +157,8 @@ const courierQuestions: Question[] = [
     section: S_COMMS,
     sectionContext: C_COMMS,
     question: 'How do you communicate with the lab?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp', 'Phone call', 'Email', 'Microsoft Teams', 'In-person handoff only', 'Paper form or manifest', 'System update that lab can see'],
     required: true,
   },
   {
@@ -207,7 +210,8 @@ const courierQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What is the most common problem you encounter during sample collection?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Sample is not ready when I arrive', 'Collection location is hard to find', 'Contact person is unreachable', 'Unclear or incomplete collection instructions', 'Temperature or handling requirement issue', 'Traffic or travel delays', 'Wrong type of container or packaging provided'],
     required: true,
   },
   {

@@ -69,7 +69,8 @@ const qcQuestions: Question[] = [
     section: S_INSP,
     sectionContext: C_INSP,
     question: 'How do you get notified that new goods have arrived and are ready for inspection?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp message from warehouse', 'Email notification', 'Phone call', 'Walk to warehouse to check', 'System notification / alert', 'Paper delivery note is handed over'],
     required: true,
   },
   {
@@ -77,7 +78,8 @@ const qcQuestions: Question[] = [
     section: S_INSP,
     sectionContext: C_INSP,
     question: 'Where do you get the information needed for the inspection — CoA, acceptance criteria, MSDS? How does this reach you?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Supplier emails CoA with the shipment', 'CoA is stored in a shared folder / drive', 'Printed copy arrives with the goods', 'We request it from the supplier on arrival', 'Acceptance criteria are in our internal SOP', 'We look it up from the previous shipment records'],
     required: true,
   },
   {
@@ -85,7 +87,8 @@ const qcQuestions: Question[] = [
     section: S_INSP,
     sectionContext: C_INSP,
     question: 'How do you record inspection results today — paper form, Excel, the Access system, or something else?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Paper inspection form', 'Excel spreadsheet', 'Access / SQL database system', 'Shared Google Sheet', 'Dedicated QC software', 'Not formally recorded yet'],
     required: true,
   },
   {
@@ -101,7 +104,8 @@ const qcQuestions: Question[] = [
     section: S_INSP,
     sectionContext: C_INSP,
     question: 'After approving an item, how do you notify the warehouse that it is cleared for use?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp message to warehouse team', 'Email notification', 'Phone call', 'Walk over to inform in person', 'System status update', 'Print and attach QC approved label'],
     required: true,
   },
   {
@@ -135,7 +139,8 @@ const qcQuestions: Question[] = [
     section: S_QUAR,
     sectionContext: C_QUAR,
     question: 'How do you physically identify and separate quarantined items in the warehouse?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Red quarantine label or sticker on item', 'Moved to a dedicated quarantine area', 'Physical barrier or taped-off zone', 'System flag marks it as quarantined', 'Paper notice placed with the item', 'Verbally communicated to warehouse team'],
     required: true,
   },
   {
@@ -298,7 +303,8 @@ const qcQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What part of the QC documentation process is most tedious or error-prone?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Re-entering the same data into multiple places', 'Retrieving CoA and supporting documents', 'Printing and attaching labels manually', 'Chasing other departments for information', 'Keeping paper records organised', 'Reconciling records across systems'],
     required: true,
   },
   {

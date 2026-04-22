@@ -159,7 +159,8 @@ const warehouseQuestions: Question[] = [
     section: S_FEFO,
     sectionContext: C_FEFO,
     question: 'Do you currently follow FEFO (First Expiry First Out) when issuing stock — meaning you always pick the item closest to expiry first? If yes, how do you enforce that today?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['System automatically sorts by expiry date', 'Staff manually check labels before picking', 'Items are physically arranged by expiry', 'Barcode scanner enforces the sequence', 'We rely on staff knowledge/experience', 'FEFO is not formally enforced yet'],
     required: true,
   },
   {
@@ -271,7 +272,8 @@ const warehouseQuestions: Question[] = [
     section: S_ISSUE,
     sectionContext: C_ISSUE,
     question: 'When a department needs stock, how does that request reach you — email, phone, a paper form, WhatsApp, or something else?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Email', 'WhatsApp message', 'Phone call', 'Paper request form', 'Walk-in / verbal request', 'System request / digital form', 'Teams or internal chat'],
     required: true,
   },
   {
@@ -279,7 +281,8 @@ const warehouseQuestions: Question[] = [
     section: S_ISSUE,
     sectionContext: C_ISSUE,
     question: 'How do you record that an item has been taken out of stock?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Barcode scan in the system', 'Manual entry in inventory system', 'Written on paper / issue form', 'Updated in Excel spreadsheet', 'WhatsApp message to admin', 'Not formally recorded'],
     required: true,
   },
   {
@@ -415,7 +418,8 @@ const warehouseQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What is the most frustrating part of managing physical stock today?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Stock levels in the system do not match physical stock', 'Items are hard to locate without a proper system', 'Expiry tracking is manual and error-prone', 'Too much paperwork and manual data entry', 'Poor communication between departments', 'No real-time visibility of stock movement', 'Stock takes are very time-consuming'],
     required: true,
   },
   {

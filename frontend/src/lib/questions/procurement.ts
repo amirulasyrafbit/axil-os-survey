@@ -200,7 +200,8 @@ const procurementQuestions: Question[] = [
     section: S_SUPPLIER,
     sectionContext: C_SUPPLIER,
     question: 'How do you decide which supplier to use when multiple suppliers carry the same product?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Lowest price', 'Fastest lead time', 'Quality / past performance', 'Existing preferred supplier relationship', 'Stock availability at time of order', 'Compliance certifications (ISO, etc.)', 'Management or director decision'],
     required: true,
   },
   {
@@ -277,7 +278,8 @@ const procurementQuestions: Question[] = [
     section: S_COORD,
     sectionContext: C_COORD,
     question: 'How does your team coordinate with the warehouse when goods are expected to arrive?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp message to warehouse team', 'Email notification', 'Phone call', 'System notification or PO status update', 'In-person coordination', 'Shared spreadsheet or tracking file'],
     required: true,
   },
   {
@@ -285,7 +287,8 @@ const procurementQuestions: Question[] = [
     section: S_COORD,
     sectionContext: C_COORD,
     question: 'How does your team coordinate with customer care when a customer PO comes in?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp message', 'Email', 'Phone call', 'System notification', 'In-person discussion', 'Shared document or tracker', 'No formal coordination — they check themselves'],
     required: true,
   },
   {
@@ -345,7 +348,8 @@ const procurementQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What part of your team\'s work takes the most time but feels like it shouldn\'t?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Manually cross-referencing multiple systems', 'Chasing suppliers for delivery updates', 'Matching customer POs to quotations manually', 'Updating records in multiple places', 'Preparing purchase reports or summaries', 'Coordinating with warehouse on arrivals'],
     required: true,
   },
   {

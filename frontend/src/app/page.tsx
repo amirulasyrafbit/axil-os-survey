@@ -19,7 +19,7 @@ import { DEPARTMENTS } from '@/lib/questions';
 
 type Step = 'department' | 'details';
 
-const ACTIVE_DEPARTMENTS = new Set(['customer-care', 'pre-sales']);
+const ACTIVE_DEPARTMENTS = new Set(DEPARTMENTS.map((d) => d.id));
 
 export default function LandingPage() {
   const router = useRouter();

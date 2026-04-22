@@ -91,7 +91,8 @@ const productionQuestions: Question[] = [
     section: S_MFG,
     sectionContext: C_MFG,
     question: 'When raw materials are taken from stock to use in manufacturing, how is that movement recorded?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Entered into inventory system', 'Recorded in Excel', 'Written on paper form', 'Scanned via barcode', 'Sent via WhatsApp to admin', 'Not currently recorded'],
     required: true,
   },
   {
@@ -99,7 +100,8 @@ const productionQuestions: Question[] = [
     section: S_MFG,
     sectionContext: C_MFG,
     question: 'When a production run is finished, how do the finished goods get added to inventory — who records it and how?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Production team enters it in the system', 'Warehouse team updates the record', 'Admin staff keys it in manually', 'Paper form is submitted', 'It is not currently recorded formally'],
     required: true,
   },
   {
@@ -107,7 +109,8 @@ const productionQuestions: Question[] = [
     section: S_MFG,
     sectionContext: C_MFG,
     question: 'What happens if the actual yield from a production run is less than expected?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Variance is recorded in the system', 'Supervisor is informed', 'Stock is adjusted manually', 'Root cause is investigated', 'Finance is notified', 'No formal process exists'],
     required: true,
   },
   {
@@ -115,7 +118,8 @@ const productionQuestions: Question[] = [
     section: S_MFG,
     sectionContext: C_MFG,
     question: 'How does the production team communicate with QC when finished goods are ready for inspection?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['WhatsApp message', 'Email', 'Phone call', 'Walk over in person', 'System notification', 'Paper form or delivery note'],
     required: true,
   },
 
@@ -125,7 +129,8 @@ const productionQuestions: Question[] = [
     section: S_RM,
     sectionContext: C_RM,
     question: 'How does your team know when raw materials need to be replenished — is there a system alert, a minimum stock level, or is it based on experience?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['System alert or notification', 'Minimum stock level threshold', 'Based on experience / gut feel', 'Visual check of physical stock', 'Reviewed during production planning', 'Weekly or monthly review meeting'],
     required: true,
   },
   {
@@ -254,7 +259,8 @@ const productionQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What part of your team\'s work takes the most time but feels like it shouldn\'t?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Manual data entry into multiple systems', 'Chasing approvals or sign-offs', 'Stock counting and reconciliation', 'Preparing production reports', 'Coordinating with other departments', 'Locating raw materials in the warehouse'],
     required: true,
   },
   {

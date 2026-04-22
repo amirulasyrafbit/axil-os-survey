@@ -50,7 +50,8 @@ const financeQuestions: Question[] = [
     section: S_TEAM,
     sectionContext: C_TEAM,
     question: 'What systems do you currently use for financial reporting and accounting?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Excel spreadsheets', 'SQL / Access database', 'AutoCount', 'QuickBooks', 'SQL Accounting', 'SAP', 'Sage', 'Oracle / NetSuite', 'Custom internal system'],
     required: true,
   },
 
@@ -181,7 +182,8 @@ const financeQuestions: Question[] = [
     section: S_REPORT,
     sectionContext: C_REPORT,
     question: 'What financial reports do you currently produce that relate to inventory — please list them.',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Profit & Loss statement', 'Cost of Goods Sold (COGS) report', 'Inventory valuation report', 'Stock movement report', 'Ageing stock report', 'Department cost allocation report', 'Monthly closing / balance sheet', 'Expired / near-expiry stock report'],
     required: true,
   },
   {
@@ -300,7 +302,8 @@ const financeQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What is the most manual and time-consuming part of your month-end process?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Chasing other departments for data', 'Manually entering transactions', 'Reconciling inventory against financial records', 'Converting foreign currencies', 'Compiling reports from multiple sources', 'Verifying COGS calculations', 'Reviewing and correcting prior entries'],
     required: true,
   },
   {
@@ -308,7 +311,8 @@ const financeQuestions: Question[] = [
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What financial data do you wish you could see in real time rather than waiting for month end?',
-    type: 'textarea',
+    type: 'multiselect',
+    options: ['Current inventory value by product', 'COGS as transactions happen', 'Stock levels across all departments', 'Outstanding POs and their values', 'Revenue vs cost per order', 'Currency exposure / forex impact'],
     required: true,
   },
   {
