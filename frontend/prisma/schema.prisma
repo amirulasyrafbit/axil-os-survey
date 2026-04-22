@@ -1,0 +1,39 @@
+// Prisma schema for Axil OS — Operations Discovery survey
+// Run `npx prisma migrate dev --name init` to apply this schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  email        String   @unique
+  name         String
+  passwordHash String   @map("password_hash")
+
+  @@map("admins")
+}
+
+model SurveyResponse {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  department      String
+  respondentName  String   @map("respondent_name")
+  respondentEmail String   @map("respondent_email")
+  answers         Json     @default("{}")
+  completed       Boolean  @default(false)
+
+  @@index([department])
+  @@index([completed])
+  @@index([createdAt(sort: Desc)])
+  @@index([respondentEmail])
+  @@map("survey_responses")
+}

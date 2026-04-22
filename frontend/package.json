@@ -1,0 +1,38 @@
+{
+  "name": "axil-os-survey-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && prisma migrate deploy && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "admin:create": "node scripts/create-admin.mjs"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.10.4",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@prisma/client": "^5.22.0",
+    "framer-motion": "^10.18.0",
+    "next": "^14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.18",
+    "postcss": "^8.4.49",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
+}
