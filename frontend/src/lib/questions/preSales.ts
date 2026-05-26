@@ -31,16 +31,18 @@ const preSalesQuestions: Question[] = [
     section: S_TEAM,
     sectionContext: C_TEAM,
     question: 'What is your team responsible for day to day? Please describe in your own words.',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q2',
     section: S_TEAM,
     sectionContext: C_TEAM,
     question: 'How many people are in the pre-sales team?',
-    type: 'number',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q3',
@@ -60,6 +62,7 @@ const preSalesQuestions: Question[] = [
       'Word documents or presentations',
     ],
     required: true,
+    hasOther: true,
   },
 
   // ── Finding and engaging customers ────────────────────────────────────────
@@ -80,14 +83,16 @@ const preSalesQuestions: Question[] = [
       'WhatsApp or industry groups',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q5',
     section: S_ENGAGE,
     sectionContext: C_ENGAGE,
     question: 'When a potential customer shows interest in a product or service, what is your next step?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q6',
@@ -104,6 +109,7 @@ const preSalesQuestions: Question[] = [
       'Shared document or spreadsheet',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q7',
@@ -120,6 +126,7 @@ const preSalesQuestions: Question[] = [
       'We do not currently follow up systematically',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q8',
@@ -136,6 +143,7 @@ const preSalesQuestions: Question[] = [
       'We do not always find out',
     ],
     required: true,
+    hasOther: true,
   },
 
   // ── Product and stock knowledge ───────────────────────────────────────────
@@ -156,6 +164,7 @@ const preSalesQuestions: Question[] = [
       'Current promotions or special deals',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q10',
@@ -174,22 +183,25 @@ const preSalesQuestions: Question[] = [
       'A shared spreadsheet or document',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q11',
     section: S_KNOWLEDGE,
     sectionContext: C_KNOWLEDGE,
     question: 'Has there ever been a situation where you gave a customer wrong information about availability or pricing — what happened?',
-    type: 'textarea',
+    type: 'multiselect',
     required: false,
+    hasOther: true,
   },
   {
     id: 'ps-q12',
     section: S_KNOWLEDGE,
     sectionContext: C_KNOWLEDGE,
     question: 'Have you ever lost a deal because you could not confirm availability or pricing fast enough?',
-    type: 'textarea',
+    type: 'multiselect',
     required: false,
+    hasOther: true,
   },
   {
     id: 'ps-q13',
@@ -209,6 +221,7 @@ const preSalesQuestions: Question[] = [
       'Active promotions or deals',
     ],
     required: true,
+    hasOther: true,
   },
 
   // ── The website and online presence ───────────────────────────────────────
@@ -217,9 +230,10 @@ const preSalesQuestions: Question[] = [
     section: S_WEBSITE,
     sectionContext: C_WEBSITE,
     question: 'Do you currently use the Axil Scientific website as a tool during customer conversations?',
-    type: 'radio',
+    type: 'multiselect',
     options: ['Yes, regularly', 'Sometimes', 'Rarely', 'No'],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q15',
@@ -238,15 +252,17 @@ const preSalesQuestions: Question[] = [
       'The website looks outdated or unprofessional',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q16',
     section: S_WEBSITE,
     sectionContext: C_WEBSITE,
     question: 'Have prospects ever asked whether they can browse the full catalogue or place orders online?',
-    type: 'radio',
+    type: 'multiselect',
     options: ['Yes, often', 'Sometimes', 'Rarely', 'Never'],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q17',
@@ -265,6 +281,7 @@ const preSalesQuestions: Question[] = [
       'Instant quote request button',
     ],
     required: true,
+    hasOther: true,
   },
 
   // ── Pipeline and reporting ────────────────────────────────────────────────
@@ -284,6 +301,7 @@ const preSalesQuestions: Question[] = [
       'We do not currently track leads formally',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q19',
@@ -300,6 +318,7 @@ const preSalesQuestions: Question[] = [
       'We do not formally report pipeline',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q20',
@@ -316,6 +335,7 @@ const preSalesQuestions: Question[] = [
       'We do not currently track this',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q21',
@@ -332,6 +352,7 @@ const preSalesQuestions: Question[] = [
       'We do not currently track this per customer',
     ],
     required: true,
+    hasOther: true,
   },
 
   // ── Current system and rebuild ────────────────────────────────────────────
@@ -340,8 +361,9 @@ const preSalesQuestions: Question[] = [
     section: S_REBUILD,
     sectionContext: C_REBUILD,
     question: 'What tools or processes work well for your team today that you would not want to lose?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q23',
@@ -360,22 +382,25 @@ const preSalesQuestions: Question[] = [
       'No visibility on whether a customer received a quote',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q24',
     section: S_REBUILD,
     sectionContext: C_REBUILD,
     question: 'We are rebuilding everything from scratch into one unified platform. What is the single most important thing the new system must get right for the pre-sales team?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q25',
     section: S_REBUILD,
     sectionContext: C_REBUILD,
     question: 'Previous proposals for a new system were considered but not pursued. From your team\'s perspective, what went wrong — and what would need to be different this time?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
 
   // ── Pain points ───────────────────────────────────────────────────────────
@@ -395,6 +420,7 @@ const preSalesQuestions: Question[] = [
       'Customer takes too long to respond',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q27',
@@ -412,22 +438,25 @@ const preSalesQuestions: Question[] = [
       'Active promotions or volume discounts',
     ],
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q28',
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'What is the biggest gap between what you promise a customer and what actually gets delivered?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
   {
     id: 'ps-q29',
     section: S_PAIN,
     sectionContext: C_PAIN,
     question: 'If you could fix one thing about how pre-sales works today, what would it be?',
-    type: 'textarea',
+    type: 'multiselect',
     required: true,
+    hasOther: true,
   },
 
   // ── Open ──────────────────────────────────────────────────────────────────
@@ -436,8 +465,9 @@ const preSalesQuestions: Question[] = [
     section: S_OPEN,
     sectionContext: C_OPEN,
     question: 'Is there anything else about how your team works that you think we should know before we prepare our proposal?',
-    type: 'textarea',
+    type: 'multiselect',
     required: false,
+    hasOther: true,
   },
 ];
 

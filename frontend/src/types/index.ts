@@ -1,6 +1,6 @@
 // ─── Question & Department ────────────────────────────────────────────────────
 
-export type QuestionType = 'text' | 'textarea' | 'number' | 'select' | 'radio' | 'multiselect';
+export type QuestionType = 'text' | 'textarea' | 'number' | 'radio' | 'multiselect';
 
 export interface Question {
   id: string;
@@ -9,6 +9,8 @@ export interface Question {
   question: string;
   type: QuestionType;
   options?: string[];
+  hasOther?: boolean;
+  otherLabel?: string;
   required: boolean;
 }
 
@@ -20,7 +22,8 @@ export type DepartmentId =
   | 'customer-care'
   | 'procurement'
   | 'pre-sales'
-  | 'courier';
+  | 'courier'
+  | 'lab-services';
 
 export interface Department {
   id: DepartmentId;

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Question } from '@/types';
 import { useSurveyState } from '@/hooks/useSurveyState';
 import QuestionCard from './QuestionCard';
+import { isQuestionAnswered } from '@/lib/surveyAnswer';
 import SurveyProgressBar from './ProgressBar';
 import SectionTransition from './SectionTransition';
 
@@ -44,7 +45,9 @@ export default function SurveyShell({ questions, responseId, respondentName }: S
   } = useSurveyState({ questions, responseId });
 
   const currentAnswer = answers[currentQuestion?.id ?? ''] ?? '';
-  const canProceed = !currentQuestion?.required || currentAnswer.trim().length > 0;
+  const canProceed =
+    !currentQuestion?.required ||
+    isQuestionAnswered(currentAnswer, currentQuestion);
 
   // Clear validation error as soon as user types something
   useEffect(() => {
@@ -64,13 +67,6 @@ export default function SurveyShell({ questions, responseId, respondentName }: S
     setShowValidation(false);
     await handleNext();
   }, [canProceed, handleNext]);
-
-  // Auto-advance handler for radio (called after 420ms delay in QuestionCard)
-  const handleAutoAdvance = useCallback(async () => {
-    if (canProceed && phase === 'answering') {
-      await handleNext();
-    }
-  }, [canProceed, handleNext, phase]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -169,7 +165,6 @@ export default function SurveyShell({ questions, responseId, respondentName }: S
               question={currentQuestion}
               value={currentAnswer}
               onChange={(val) => setAnswer(currentQuestion.id, val)}
-              onAutoAdvance={handleAutoAdvance}
             />
           </MotionBox>
         </AnimatePresence>

@@ -7,6 +7,7 @@ import customerCareQuestions from './customerCare';
 import procurementQuestions from './procurement';
 import preSalesQuestions from './preSales';
 import courierQuestions from './courier';
+import labServicesQuestions from './labServicesQuestions';
 
 export const DEPARTMENTS: Department[] = [
   { id: 'production',    label: 'Production',     questions: productionQuestions },
@@ -17,6 +18,7 @@ export const DEPARTMENTS: Department[] = [
   { id: 'procurement',   label: 'Procurement',     questions: procurementQuestions },
   { id: 'pre-sales',     label: 'Pre-Sales',       questions: preSalesQuestions },
   { id: 'courier',       label: 'Courier',         questions: courierQuestions },
+  { id: 'lab-services',  label: 'Lab Services',    questions: labServicesQuestions },
 ];
 
 export const DEPARTMENT_MAP: Record<DepartmentId, Department> = Object.fromEntries(

@@ -28,6 +28,9 @@ const DEPT_COLORS: Record<string, string> = {
   finance:         'green',
   'customer-care': 'pink',
   'pre-sales':     'teal',
+  procurement:     'cyan',
+  courier:         'yellow',
+  'lab-services':  'red',
 };
 
 interface AdminDashboardProps {
@@ -160,7 +163,7 @@ export default function AdminDashboard({ adminName, onLogout }: AdminDashboardPr
             {/* Section header */}
             <Flex align="center" gap={3} px={6} py={4} borderBottom="1px solid" borderColor="secondaryGray.100">
               <Badge colorScheme={DEPT_COLORS[dept] ?? 'gray'} variant="subtle" fontSize="11px" px={3} py={1}>
-                {dept.replace('-', ' ')}
+                {dept.replace(/-/g, ' ')}
               </Badge>
               <Text fontSize="xs" fontWeight="600" color="secondaryGray.600">
                 {deptResponses.length} response{deptResponses.length !== 1 ? 's' : ''}

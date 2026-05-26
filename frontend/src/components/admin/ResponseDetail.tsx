@@ -13,72 +13,106 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import { SurveyResponse } from '@/types';
+import { Question } from '@/types';
 import { getDepartment } from '@/lib/questions';
 import { formatDate } from '@/utils/formatDate';
-import { parseMultiSelect } from '@/components/survey/QuestionCard';
+import { isOtherOption, parseMultiSelect } from '@/lib/surveyAnswer';
 
 interface ResponseDetailProps {
   response: SurveyResponse;
   onBack: () => void;
 }
 
-function AnswerDisplay({ answer }: { answer: string }) {
+function AnswerDisplay({ answer, question }: { answer: string; question: Question }) {
+  const ms = parseMultiSelect(answer);
+
   if (!answer || answer === '—') {
+    return <Text fontSize="sm" color="gray.400" fontStyle="italic">No answer provided</Text>;
+  }
+
+  const hasOptions = (question.options?.length ?? 0) > 0;
+
+  // Free text types (textarea / text / number) and multiselect with no options
+  if (!hasOptions) {
+    if (!ms.n.trim()) {
+      return <Text fontSize="sm" color="gray.400" fontStyle="italic">No answer provided</Text>;
+    }
     return (
-      <Text fontSize="sm" color="gray.400" fontStyle="italic">No answer provided</Text>
+      <Text fontSize="sm" color="gray.700" whiteSpace="pre-wrap" lineHeight="1.7">
+        {ms.n}
+      </Text>
     );
   }
 
-  // Detect multiselect JSON
-  if (answer.startsWith('{')) {
-    const ms = parseMultiSelect(answer);
-    return (
-      <Box>
-        {ms.s.length > 0 && (
-          <Wrap spacing={2} mb={ms.n ? 3 : 0}>
-            {ms.s.map((item) => (
-              <WrapItem key={item}>
-                <Box
-                  bg="brand.50"
-                  border="1px solid"
-                  borderColor="brand.200"
-                  borderRadius="full"
-                  px={3}
-                  py={1}
-                >
-                  <Text fontSize="xs" fontWeight="600" color="brand.700">
-                    {item}
-                  </Text>
-                </Box>
-              </WrapItem>
-            ))}
-          </Wrap>
-        )}
-        {ms.n && (
-          <Box
-            bg="secondaryGray.300"
-            borderRadius="8px"
-            px={3}
-            py={2.5}
-            borderLeft="2px solid"
-            borderColor="secondaryGray.500"
-          >
-            <Text fontSize="xs" fontWeight="600" color="secondaryGray.700" mb={1}>
-              Additional thoughts
-            </Text>
-            <Text fontSize="sm" color="gray.700" whiteSpace="pre-wrap" lineHeight="1.7">
-              {ms.n}
-            </Text>
-          </Box>
-        )}
-      </Box>
-    );
+  // Radio / multiselect with options
+  const chips    = ms.s.filter(s => !isOtherOption(s));
+  const hasOther = ms.s.some(isOtherOption);
+  const hasNotes = !!ms.n.trim();
+
+  if (!chips.length && !hasOther && !hasNotes) {
+    return <Text fontSize="sm" color="gray.400" fontStyle="italic">No answer provided</Text>;
   }
 
   return (
-    <Text fontSize="sm" color="gray.700" whiteSpace="pre-wrap" lineHeight="1.7">
-      {answer}
-    </Text>
+    <Box>
+      {chips.length > 0 && (
+        <Wrap spacing={2} mb={hasOther || hasNotes ? 3 : 0}>
+          {chips.map(item => (
+            <WrapItem key={item}>
+              <Box
+                bg="brand.50"
+                border="1px solid"
+                borderColor="brand.200"
+                borderRadius="full"
+                px={3}
+                py={1}
+              >
+                <Text fontSize="xs" fontWeight="600" color="brand.700">{item}</Text>
+              </Box>
+            </WrapItem>
+          ))}
+        </Wrap>
+      )}
+
+      {hasOther && (
+        <Box
+          bg="orange.50"
+          borderRadius="8px"
+          px={3}
+          py={2.5}
+          mb={hasNotes ? 3 : 0}
+          borderLeft="2px solid"
+          borderColor="orange.300"
+        >
+          <Text fontSize="xs" fontWeight="600" color="secondaryGray.700" mb={ms.o ? 1 : 0}>
+            {question.otherLabel ?? 'Other'}
+          </Text>
+          {ms.o && (
+            <Text fontSize="sm" color="gray.700" whiteSpace="pre-wrap" lineHeight="1.7">
+              {ms.o}
+            </Text>
+          )}
+        </Box>
+      )}
+
+      {hasNotes && (
+        <Box
+          bg="secondaryGray.300"
+          borderRadius="8px"
+          px={3}
+          py={2.5}
+          borderLeft="2px solid"
+          borderColor="secondaryGray.500"
+        >
+          <Text fontSize="xs" fontWeight="600" color="secondaryGray.700" mb={1}>
+            Additional thoughts
+          </Text>
+          <Text fontSize="sm" color="gray.700" whiteSpace="pre-wrap" lineHeight="1.7">
+            {ms.n}
+          </Text>
+        </Box>
+      )}
+    </Box>
   );
 }
 
@@ -86,14 +120,14 @@ export default function ResponseDetail({ response, onBack }: ResponseDetailProps
   const dept = getDepartment(response.department);
 
   const sections = dept
-    ? dept.questions.reduce<{ section: string; items: { question: string; answer: string }[] }[]>(
+    ? dept.questions.reduce<{ section: string; items: { question: Question; answer: string }[] }[]>(
         (acc, q) => {
           const answer = response.answers?.[q.id] ?? '—';
-          const existing = acc.find((s) => s.section === q.section);
+          const existing = acc.find(s => s.section === q.section);
           if (existing) {
-            existing.items.push({ question: q.question, answer });
+            existing.items.push({ question: q, answer });
           } else {
-            acc.push({ section: q.section, items: [{ question: q.question, answer }] });
+            acc.push({ section: q.section, items: [{ question: q, answer }] });
           }
           return acc;
         },
@@ -141,7 +175,7 @@ export default function ResponseDetail({ response, onBack }: ResponseDetailProps
               {items.map(({ question, answer }, i) => (
                 <Box key={i}>
                   <Text fontSize="sm" fontWeight="500" color="gray.700" mb={2}>
-                    {question}
+                    {question.question}
                   </Text>
                   <Box
                     bg="gray.50"
@@ -151,7 +185,7 @@ export default function ResponseDetail({ response, onBack }: ResponseDetailProps
                     borderLeft="3px solid"
                     borderColor={answer === '—' ? 'gray.200' : 'brand.300'}
                   >
-                    <AnswerDisplay answer={answer} />
+                    <AnswerDisplay answer={answer} question={question} />
                   </Box>
                 </Box>
               ))}

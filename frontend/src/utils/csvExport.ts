@@ -25,7 +25,11 @@ export function exportResponsesAsCsv(responses: SurveyResponse[]): string {
   const questionHeaders = questionIds.map((qId) => {
     const prefix = qId.split('-')[0];
     const deptId =
-      prefix === 'cc' ? 'customer-care' : prefix === 'ps' ? 'pre-sales' : prefix;
+      prefix === 'cc'  ? 'customer-care' :
+      prefix === 'ps'  ? 'pre-sales'     :
+      prefix === 'lab' ? 'lab-services'  :
+      prefix === 'cur' ? 'courier'       :
+      prefix;
     const dept = getDepartment(deptId);
     const question = dept?.questions.find((q) => q.id === qId);
     return question ? `[${qId}] ${question.question.slice(0, 60)}` : qId;
