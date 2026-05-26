@@ -23,7 +23,8 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/scripts ./scripts
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npx next start -p ${PORT:-3000}"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node scripts/create-admin.mjs --email=${ADMIN_EMAIL} --password=${ADMIN_PASSWORD} --name='Axil Admin' || true && npx next start -p ${PORT:-3000}"]
