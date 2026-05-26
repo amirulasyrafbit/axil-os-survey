@@ -1,7 +1,6 @@
 [build]
-builder = "nixpacks"
+dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "cd frontend && npx prisma migrate deploy && npm start"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
